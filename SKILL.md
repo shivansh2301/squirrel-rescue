@@ -9,14 +9,22 @@ The whole site is `index.html`. GitHub Pages serves `main` from the repo root, s
 
 ## Page structure (keep this order)
 
-1. `header.hero`: stripes, `<h1>`, one-line subtitle
-2. `section.sos`: the emergency card
-   - `.lines`: one `.line` per helpline (name, short note, number with a Copy button whose `data-copy` is the number in `+91XXXXXXXXXX` form)
-   - `ol.steps`: exactly four steps
-   - `.nomilk`: the milk warning
-3. `section.group` "If you're looking after it": `<details>` panels
-4. `section.group` "Help more": `<details>` panels
-5. `footer`: the "Numbers from … [Month Year]" line and the disclaimer
+1. Hidden SVG `<symbol>` icon set (`#i-look`, `#i-wait`, `#i-warm`, `#i-call`, `#i-leaf`, `#i-hand`, `#i-cup`). Reuse them with `<svg><use href="#i-…"/></svg>`.
+2. `header.hero`: inline SVG illustration (squirrel on a branch, coloured only with CSS variables), `<h1>`, the lede, and the "Hurt or in danger? See who to call" link to `#helplines`
+3. `ol.trail`: exactly four `li.step`s in this order, because it's the real order of what to do:
+   1. Look before you touch (age cards)
+   2. Give mum a chance (with the "Skip straight to step 3 if…" box)
+   3. Keep it warm, dark and quiet (with the "Don't feed it" note)
+   4. Call a rescuer: `.lines#helplines`, one `.line` per helpline (name, short note, number with a Copy button whose `data-copy` is the number in `+91XXXXXXXXXX` form)
+4. `section.group` "Until help arrives": `<details>` panels
+5. `section.group` "Help more": `<details>` panels
+6. `footer`: leaf-vine SVG, the "Numbers from … [Month Year]" line and the disclaimer
+
+## Look and feel
+
+- A calm leaf-and-bark palette, all from the CSS variables in `:root` with dark-mode twins. No red or alarm styling. Warnings use `--bark-soft` boxes.
+- Illustrations are hand-written inline SVG built from simple shapes, with fills from CSS variables so they work in dark mode. Don't add image files, stock photos or copyrighted characters.
+- The tone is calm and reassuring: most found babies don't need rescue.
 
 ## Procedure for any change
 

@@ -3,114 +3,237 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Found a baby squirrel in Bengaluru? Helpline numbers and what to do right now.">
+<meta name="description" content="Found a baby squirrel in Bengaluru? What to do, step by step, and who to call.">
 <title>Baby Squirrel Rescue Kit</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
 <style>
-/* Layout: one column. Emergency card first, short steps, then folding panels. Palm-squirrel stripe colours as the accent. */
+/* Layout: illustrated canopy header, then a vertical trail of four steps (the real order of what to do), then fold-out panels. Whole page in leaf and bark tones. */
 :root{
-  --bg:#f3f5f1; --surface:#ffffff; --ink:#1d2621; --muted:#5b665f; --line:#d6ddd5;
-  --leaf:#2f6b4f; --leaf-soft:#e2eee6; --fur:#b5651d; --fur-soft:#f8eadb;
-  --alert:#b3261e; --alert-soft:#fbe7e5;
+  --bg:#e8eddd; --surface:#f6f8ef; --ink:#22301f; --muted:#56644d; --line:#cbd5bc;
+  --hero:#d3e0bf; --leaf:#3d6b3a; --leaf-2:#5e8a4f; --leaf-3:#8fb26f;
+  --bark:#74482a; --bark-soft:#eadbc4; --fur:#a8692f; --fur-dark:#6f4423; --stripe:#f4ecd8; --sun:#f1e6b8;
   --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
   --body:"Atkinson Hyperlegible",ui-sans-serif,system-ui,sans-serif;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#131915; --surface:#1b231e; --ink:#e7ece8; --muted:#9aa79f; --line:#2e3a33;
-  --leaf:#7cc29d; --leaf-soft:#1f3328; --fur:#e39a55; --fur-soft:#3a2a1b;
-  --alert:#ff8a80; --alert-soft:#3d1f1c; color-scheme:dark}}
+  --bg:#151d13; --surface:#1e281b; --ink:#e5ebdb; --muted:#a2af95; --line:#33402d;
+  --hero:#1f2d1c; --leaf:#93c486; --leaf-2:#4f7a44; --leaf-3:#3b5e34;
+  --bark:#d39d6a; --bark-soft:#3a2b1d; --fur:#b97a42; --fur-dark:#7a4c28; --stripe:#efe3c8; --sun:#3b4428; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#131915; --surface:#1b231e; --ink:#e7ece8; --muted:#9aa79f; --line:#2e3a33;
-  --leaf:#7cc29d; --leaf-soft:#1f3328; --fur:#e39a55; --fur-soft:#3a2a1b;
-  --alert:#ff8a80; --alert-soft:#3d1f1c; color-scheme:dark}
+  --bg:#151d13; --surface:#1e281b; --ink:#e5ebdb; --muted:#a2af95; --line:#33402d;
+  --hero:#1f2d1c; --leaf:#93c486; --leaf-2:#4f7a44; --leaf-3:#3b5e34;
+  --bark:#d39d6a; --bark-soft:#3a2b1d; --fur:#b97a42; --fur-dark:#7a4c28; --stripe:#efe3c8; --sun:#3b4428; color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);margin:0}
-main{max-width:720px;margin:0 auto;padding-inline:16px;padding-block:36px 64px;display:grid;gap:28px}
+.wrap{max-width:720px;margin:0 auto;padding-inline:16px;padding-block:20px 64px;display:grid;gap:36px}
 h1,h2,h3{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
-h1{font-size:clamp(2rem,6.5vw,3rem);font-weight:800;letter-spacing:-.02em}
-h2{font-size:1.4rem;font-weight:800;letter-spacing:-.01em}
-h3{font-size:1rem;font-weight:600}
+h1{font-size:clamp(2rem,7vw,3.1rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:1.45rem;font-weight:800;letter-spacing:-.01em}
+h3{font-size:1.2rem;font-weight:600}
 p{margin:0}
 a{color:var(--leaf)}
 .muted{color:var(--muted)}
 .small{font-size:.875rem}
 
-.hero{display:grid;gap:12px}
-.stripes{display:flex;gap:5px;height:8px;width:84px}
-.stripes span{flex:1;border-radius:4px;background:var(--fur)}
-.stripes span:nth-child(2){background:var(--ink)}
+/* Hero */
+.hero{background:var(--hero);border-radius:24px;overflow:hidden;display:grid;grid-template-columns:1fr;position:relative}
+.hero svg{display:block;width:100%;height:auto;max-width:100%}
+.hero .text{padding:4px 22px 24px;display:grid;gap:12px}
+.hero .lede{font-size:1.1rem;color:var(--muted);max-width:44ch}
+.urgent{justify-self:start;display:inline-flex;gap:8px;align-items:center;text-decoration:none;font-weight:700;font-size:.92rem;
+  color:var(--bark);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:7px 14px}
+.urgent:hover{border-color:var(--bark)}
+.urgent svg{width:16px;height:16px}
 
-/* Emergency card */
-.sos{background:var(--alert-soft);border:2px solid var(--alert);border-radius:16px;padding:18px;display:grid;gap:16px}
-.lines{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
-.line{background:var(--surface);border-radius:10px;padding:12px 14px;display:grid;gap:2px;min-width:0}
+/* Trail of steps */
+.trail{display:grid;gap:0;list-style:none;margin:0;padding:0}
+.step{display:grid;grid-template-columns:56px 1fr;gap:16px;position:relative;padding-bottom:30px}
+.step:last-child{padding-bottom:0}
+.step::before{content:"";position:absolute;left:27px;top:56px;bottom:0;border-left:2px dashed var(--leaf-3)}
+.step:last-child::before{display:none}
+.badge{width:56px;height:56px;border-radius:50%;background:var(--surface);border:2px solid var(--leaf-2);display:grid;place-items:center;color:var(--leaf);position:relative}
+.badge svg{width:28px;height:28px}
+.badge b{position:absolute;top:-4px;right:-4px;width:22px;height:22px;border-radius:50%;background:var(--bark);color:var(--surface);font:700 .75rem/22px var(--body);text-align:center}
+.content{display:grid;gap:10px;padding-top:6px;min-width:0}
+.content ul{margin:0;padding-left:1.15em;display:grid;gap:4px}
+.ages{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+.age{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;gap:2px;min-width:0}
+.age strong{font-family:var(--display);font-weight:600}
+.age.ok{background:transparent;border-style:dashed}
+.skip{background:var(--bark-soft);border-radius:12px;padding:12px 14px;display:grid;gap:4px}
+.skip b{color:var(--bark)}
+.note{display:flex;gap:10px;align-items:flex-start;background:var(--bark-soft);border-radius:12px;padding:12px 14px}
+.note svg{flex:none;width:22px;height:22px;color:var(--bark);margin-top:1px}
+
+/* Helplines */
+.lines{display:grid;gap:8px;scroll-margin-top:16px}
+.line{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:grid;grid-template-columns:1fr auto;gap:2px 14px;align-items:center;min-width:0}
+.line > b,.line > .small{grid-column:1}
+.line .num{grid-column:2;grid-row:1 / span 2;justify-content:flex-end}
+.line .alt{grid-column:2;text-align:right}
+@media (max-width:460px){.line{grid-template-columns:1fr}.line .num,.line .alt{grid-column:1;grid-row:auto;justify-content:flex-start;text-align:left}}
 .line b{font-family:var(--display);font-weight:600}
-.num{font-size:1.2rem;font-weight:700;font-variant-numeric:tabular-nums;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.num{font-size:1.2rem;font-weight:700;font-variant-numeric:tabular-nums;display:flex;gap:8px;align-items:center;flex-wrap:wrap;color:var(--leaf)}
 .num span{user-select:all}
 .copy{font:700 .72rem var(--body);border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:2px 9px;cursor:pointer}
-ol.steps{list-style:none;counter-reset:s;margin:0;padding:0;display:grid;gap:10px}
-ol.steps li{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}
-ol.steps li::before{counter-increment:s;content:counter(s);font-weight:700;font-size:.85rem;background:var(--alert);color:var(--surface);border-radius:50%;width:26px;height:26px;display:grid;place-items:center}
-.nomilk{background:var(--surface);border-radius:10px;padding:12px 14px;font-weight:700}
-.nomilk span{color:var(--alert)}
 
 /* Folding panels */
 .group{display:grid;gap:10px}
-.group > h2{margin-bottom:2px}
-details{background:var(--surface);border:1px solid var(--line);border-radius:12px}
-details[open]{border-color:var(--leaf)}
+.group > header{display:flex;align-items:center;gap:10px}
+.group > header svg{width:26px;height:26px;color:var(--leaf-2);flex:none}
+details{background:var(--surface);border:1px solid var(--line);border-radius:14px}
+details[open]{border-color:var(--leaf-2)}
 summary{cursor:pointer;list-style:none;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:var(--display);font-weight:600;font-size:1.05rem}
 summary::-webkit-details-marker{display:none}
 summary::after{content:"";flex:none;width:9px;height:9px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg) translateY(-3px);transition:transform .2s}
 details[open] summary::after{transform:rotate(225deg) translateY(-1px)}
-@media (prefers-reduced-motion:reduce){summary::after{transition:none}}
-summary:focus-visible,.copy:focus-visible,input:focus-visible{outline:3px solid var(--fur);outline-offset:2px}
+summary:focus-visible,.copy:focus-visible,input:focus-visible,.urgent:focus-visible{outline:3px solid var(--fur);outline-offset:2px}
 .body{padding:0 16px 16px;display:grid;gap:12px}
 .body ul,.body ol{margin:0;padding-left:1.2em;display:grid;gap:6px}
-.chip{display:inline-block;font-size:.75rem;font-weight:700;padding:1px 8px;border-radius:999px;background:var(--fur-soft);color:var(--fur);margin-right:6px;white-space:nowrap}
-.dont li::marker{content:"✕  ";color:var(--alert)}
-
-.calc{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;background:var(--fur-soft);border-radius:10px;padding:12px 14px}
+.dont li::marker{content:"✕  ";color:var(--bark)}
+.calc{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;background:var(--bark-soft);border-radius:10px;padding:12px 14px}
 .calc label{display:grid;gap:4px;font-size:.8rem;font-weight:700}
 .calc input{font:inherit;width:96px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 8px}
-.calc output{font:800 1.5rem var(--display);font-variant-numeric:tabular-nums}
-
+.calc output{font:800 1.5rem var(--display);font-variant-numeric:tabular-nums;color:var(--bark)}
 .roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
-.role{border-top:2px solid var(--leaf);padding-top:8px;display:grid;gap:2px;min-width:0}
+.role{border-top:2px solid var(--leaf-2);padding-top:8px;display:grid;gap:2px;min-width:0}
+.body h3{font-size:1rem}
 
 footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:grid;gap:4px}
+footer svg{width:100%;height:auto;max-width:100%;color:var(--leaf-3);margin-bottom:8px}
+
+@media (prefers-reduced-motion:no-preference){
+  .tail{transform-origin:212px 150px;animation:sway 4s ease-in-out infinite}
+  @keyframes sway{0%,100%{transform:rotate(0)}50%{transform:rotate(-4deg)}}
+  summary::after{transition:transform .2s}
+}
+@media (prefers-reduced-motion:reduce){summary::after{transition:none}}
 </style>
 </head>
 <body>
 
-<main>
+<!-- shared icons -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-look" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-wait" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3.5 2.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-warm" viewBox="0 0 24 24"><path d="M3 12h18v8H3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8 9c-1-1.5 1-2.5 0-4M12 9c-1-1.5 1-2.5 0-4M16 9c-1-1.5 1-2.5 0-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-call" viewBox="0 0 24 24"><path d="M6.6 3.5 9 3l1.6 4.2-2 1.4a11 11 0 0 0 6.8 6.8l1.4-2L21 15l-.5 2.4A3 3 0 0 1 17.6 20C10.1 19.6 4.4 13.9 4 6.4a3 3 0 0 1 2.6-2.9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19C5 10 11 4 20 4c0 9-6 15-15 15z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M5 19 13 11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-hand" viewBox="0 0 24 24"><path d="M12 20s-7-4.3-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.7-7 10-7 10z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-cup" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7.5 7.5l9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+
   <header class="hero">
-    <div class="stripes" aria-hidden="true"><span></span><span></span><span></span></div>
-    <h1>Found a baby squirrel?</h1>
-    <p class="muted">Palm squirrel rescue in Bengaluru. Call first, then keep it warm.</p>
+    <svg viewBox="0 0 640 300" role="img" aria-label="A palm squirrel sitting on a branch among leaves">
+      <circle cx="520" cy="70" r="54" fill="var(--sun)"/>
+      <!-- background leaves -->
+      <g fill="var(--leaf-3)">
+        <ellipse cx="60" cy="40" rx="46" ry="20" transform="rotate(-25 60 40)"/>
+        <ellipse cx="130" cy="20" rx="40" ry="16" transform="rotate(15 130 20)"/>
+        <ellipse cx="600" cy="170" rx="44" ry="18" transform="rotate(-35 600 170)"/>
+        <ellipse cx="20" cy="120" rx="34" ry="14" transform="rotate(30 20 120)"/>
+      </g>
+      <!-- branch -->
+      <path d="M-10 236 C 140 222, 300 214, 470 226 S 640 236, 660 230 L 660 252 C 600 256, 520 250, 470 248 C 300 238, 140 246, -10 260 Z" fill="var(--bark)"/>
+      <path d="M430 230 C 470 200, 500 186, 540 178" stroke="var(--bark)" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <g fill="var(--leaf-2)">
+        <ellipse cx="548" cy="166" rx="26" ry="11" transform="rotate(-30 548 166)"/>
+        <ellipse cx="560" cy="190" rx="24" ry="10" transform="rotate(20 560 190)"/>
+        <ellipse cx="94" cy="214" rx="24" ry="10" transform="rotate(-20 94 214)"/>
+        <ellipse cx="70" cy="234" rx="22" ry="9" transform="rotate(25 70 234)"/>
+      </g>
+      <!-- squirrel -->
+      <g transform="translate(150 60)">
+        <g class="tail">
+          <path d="M210 152 C 268 150, 300 96, 280 52 C 266 20, 226 12, 214 38 C 206 56, 226 64, 238 76 C 252 92, 248 124, 206 134 Z" fill="var(--fur)"/>
+          <path d="M240 140 C 276 128, 292 92, 280 60" fill="none" stroke="var(--stripe)" stroke-width="3" stroke-linecap="round" opacity=".6"/>
+        </g>
+        <ellipse cx="180" cy="134" rx="46" ry="34" fill="var(--fur)" transform="rotate(-12 180 134)"/>
+        <!-- stripes along the back -->
+        <path d="M148 104 C 172 96, 200 102, 222 122" fill="none" stroke="var(--stripe)" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M146 114 C 172 108, 198 114, 218 134" fill="none" stroke="var(--fur-dark)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M144 124 C 170 118, 196 126, 212 144" fill="none" stroke="var(--stripe)" stroke-width="4.5" stroke-linecap="round"/>
+        <!-- head -->
+        <circle cx="132" cy="106" r="26" fill="var(--fur)"/>
+        <ellipse cx="110" cy="114" rx="14" ry="11" fill="var(--fur)"/>
+        <path d="M134 82 L 140 62 L 150 84 Z" fill="var(--fur-dark)"/>
+        <ellipse cx="114" cy="122" rx="12" ry="7" fill="var(--stripe)" opacity=".85"/>
+        <circle cx="98" cy="112" r="3.5" fill="var(--ink)"/>
+        <circle cx="126" cy="102" r="5" fill="var(--ink)"/>
+        <circle cx="127.8" cy="100.2" r="1.6" fill="var(--surface)"/>
+        <!-- paws holding a seed -->
+        <ellipse cx="128" cy="146" rx="9" ry="7" fill="var(--fur-dark)"/>
+        <ellipse cx="120" cy="140" rx="7" ry="9" fill="var(--bark-soft)"/>
+        <ellipse cx="196" cy="168" rx="18" ry="8" fill="var(--fur-dark)"/>
+      </g>
+    </svg>
+    <div class="text">
+      <h1>Found a baby squirrel?</h1>
+      <p class="lede">Most baby squirrels on the ground don't need rescuing. Here's how to tell, and what to do next, one step at a time.</p>
+      <a class="urgent" href="#helplines"><svg aria-hidden="true"><use href="#i-call"/></svg>Hurt or in danger? See who to call</a>
+    </div>
   </header>
 
-  <section class="sos" aria-label="Emergency">
-    <div class="lines">
-      <div class="line"><b>PfA Wildlife Hospital</b><span class="small muted">24×7, takes squirrels</span>
-        <span class="num"><span>99000 25370</span><button class="copy" data-copy="+919900025370">Copy</button></span>
-        <span class="small muted">or 99803 39880</span></div>
-      <div class="line"><b>ARRC</b><span class="small muted">Horamavu, rescues squirrels</span>
-        <span class="num"><span>94496 42222</span><button class="copy" data-copy="+919449642222">Copy</button></span></div>
-      <div class="line"><b>BBMP wildlife</b><span class="small muted">Toll-free</span>
-        <span class="num"><span>1533</span><button class="copy" data-copy="1533">Copy</button></span></div>
-    </div>
-    <ol class="steps">
-      <li><span><b>Is it really a baby?</b> Fluffy tail and running well means it's fine. Leave it.</span></li>
-      <li><span><b>Unhurt? Give the mother 1–2 hours.</b> Open box at the base of the tree, pets and crows away, watch from a distance.</span></li>
-      <li><span><b>Call a helpline</b> if it's injured, cold, covered in ants, caught by a cat, or the mother hasn't come by dark.</span></li>
-      <li><span><b>Keep it warm, dark and quiet</b> in a box with a cotton cloth and a warm water bottle under one side.</span></li>
-    </ol>
-    <p class="nomilk"><span>No milk, no water.</span> Cow's milk kills baby squirrels, and a cold baby can't digest anything.</p>
-  </section>
+  <ol class="trail" aria-label="What to do, in order">
+    <li class="step">
+      <div class="badge" aria-hidden="true"><svg><use href="#i-look"/></svg><b>1</b></div>
+      <div class="content">
+        <h2>Look before you touch</h2>
+        <p>Check how old it is. Older babies are often fine on their own.</p>
+        <div class="ages">
+          <div class="age"><strong>Pink, no fur</strong><span class="small muted">Eyes shut. Very young.</span></div>
+          <div class="age"><strong>Thin fur, stripes</strong><span class="small muted">Eyes shut. Still needs mum.</span></div>
+          <div class="age"><strong>Eyes open</strong><span class="small muted">Crawling, a bit tougher.</span></div>
+          <div class="age ok"><strong>Fluffy tail</strong><span class="small muted">Climbs and runs. Leave it be.</span></div>
+        </div>
+      </div>
+    </li>
+
+    <li class="step">
+      <div class="badge" aria-hidden="true"><svg><use href="#i-wait"/></svg><b>2</b></div>
+      <div class="content">
+        <h2>Give mum a chance</h2>
+        <p>Mother squirrels usually come back for a fallen baby. Put it in an open box or basket at the foot of the nearest tree, keep cats, dogs and crows away, and watch quietly from a distance for 1–2 hours.</p>
+        <div class="skip">
+          <b>Skip straight to step 3 if it's:</b>
+          <span>injured or bleeding · cold · covered in ants or flies · been in a cat's or dog's mouth · still alone at dusk</span>
+        </div>
+      </div>
+    </li>
+
+    <li class="step">
+      <div class="badge" aria-hidden="true"><svg><use href="#i-warm"/></svg><b>3</b></div>
+      <div class="content">
+        <h2>Keep it warm, dark and quiet</h2>
+        <p>Line a small box with a soft cotton cloth (not a towel, claws snag). Put a bottle of warm water wrapped in cloth under one side, so the baby can move away if it gets too hot. Cover the box loosely and keep it somewhere calm.</p>
+        <div class="note"><svg aria-hidden="true"><use href="#i-cup"/></svg><span><b>Don't feed it or give water yet.</b> A cold baby can't digest anything, and cow's milk can kill it. Warmth is what it needs right now.</span></div>
+      </div>
+    </li>
+
+    <li class="step">
+      <div class="badge" aria-hidden="true"><svg><use href="#i-call"/></svg><b>4</b></div>
+      <div class="content">
+        <h2>Call a rescuer</h2>
+        <p>Once it's warm and safe, call one of these. They'll guide you on the phone and can often pick it up.</p>
+        <div class="lines" id="helplines">
+          <div class="line"><b>PfA Wildlife Hospital</b><span class="small muted">24×7, takes squirrels</span>
+            <span class="num"><span>99000 25370</span><button class="copy" data-copy="+919900025370">Copy</button></span>
+            <span class="small muted alt">or 99803 39880</span></div>
+          <div class="line"><b>ARRC</b><span class="small muted">Horamavu, rescues squirrels</span>
+            <span class="num"><span>94496 42222</span><button class="copy" data-copy="+919449642222">Copy</button></span></div>
+          <div class="line"><b>BBMP wildlife</b><span class="small muted">Toll-free</span>
+            <span class="num"><span>1533</span><button class="copy" data-copy="1533">Copy</button></span></div>
+        </div>
+      </div>
+    </li>
+  </ol>
 
   <section class="group">
-    <h2>If you're looking after it</h2>
+    <header><svg aria-hidden="true"><use href="#i-hand"/></svg><h2>Until help arrives</h2></header>
 
     <details>
       <summary>No rescue can come for a few hours</summary>
@@ -130,17 +253,7 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
     </details>
 
     <details>
-      <summary>How old is it?</summary>
-      <div class="body"><ul style="list-style:none;padding:0">
-        <li><span class="chip">Newborn</span>Pink, no fur, eyes shut. Most urgent, get it to a centre today.</li>
-        <li><span class="chip">Furred</span>Thin fur and stripes, eyes shut. Needs constant warmth.</li>
-        <li><span class="chip">Eyes open</span>Crawling, a bit tougher.</li>
-        <li><span class="chip">Weaning</span>Fluffy tail, climbs, nibbles food. Often doesn't need rescue.</li>
-      </ul></div>
-    </details>
-
-    <details>
-      <summary>Things that kill baby squirrels</summary>
+      <summary>Things that harm baby squirrels</summary>
       <div class="body"><ul class="dont">
         <li>Cow's, buffalo or human milk</li>
         <li>Feeding while it's cold, or lying on its back</li>
@@ -152,12 +265,12 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
 
     <details>
       <summary>Can I keep it?</summary>
-      <div class="body"><p>No. Palm squirrels are protected under the Wild Life (Protection) Act, 1972. Emergency care on the way to a rescue is fine; raising and release should be done by a licensed centre.</p></div>
+      <div class="body"><p>No. Palm squirrels are protected under the Wild Life (Protection) Act, 1972. Caring for it on the way to a rescue is fine. Raising and release should be done by a licensed centre, so it can survive back in the trees.</p></div>
     </details>
   </section>
 
   <section class="group">
-    <h2>Help more</h2>
+    <header><svg aria-hidden="true"><use href="#i-leaf"/></svg><h2>Help more</h2></header>
 
     <details>
       <summary>Volunteer</summary>
@@ -208,10 +321,11 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
   </section>
 
   <footer>
+    <svg viewBox="0 0 640 40" aria-hidden="true"><path d="M0 30 C 80 22, 160 34, 240 26 S 400 20, 480 28 S 600 34, 640 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><g fill="currentColor"><ellipse cx="120" cy="20" rx="14" ry="6" transform="rotate(-25 120 20)"/><ellipse cx="330" cy="16" rx="14" ry="6" transform="rotate(20 330 16)"/><ellipse cx="520" cy="18" rx="14" ry="6" transform="rotate(-15 520 18)"/></g></svg>
     <p>Numbers from the centres' websites and news reports, October 2026. Save them, and call once to check they work.</p>
     <p>For the first few hours only. Not a replacement for a vet or rescue centre.</p>
   </footer>
-</main>
+</div>
 
 <script>
 (function(){

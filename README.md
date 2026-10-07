@@ -1,6 +1,6 @@
 # Baby Squirrel Rescue Kit
 
-A one-page site for people in Bengaluru who find a baby palm squirrel. It puts the rescue helpline numbers and four first steps at the top. Care, volunteering, donating and group-running details are in fold-out sections below.
+A one-page site for people in Bengaluru who find a baby palm squirrel. It walks them through four steps in order (look, give mum a chance, keep it warm, call a rescuer), with a shortcut to the helplines for emergencies. Care, volunteering, donating and group-running details are in fold-out sections below.
 
 **Live site:** `https://<your-username>.github.io/squirrel-rescue/`
 
@@ -34,7 +34,7 @@ The agent reads `CLAUDE.md` and the `maintain-rescue-site` skill, makes the chan
 ## Rules that matter
 
 1. **Helpline numbers must be correct.** A wrong number is the worst bug this site can have. Only change one after confirming it from the organisation's own website or a recent news report, and note the source in `CHANGELOG.md`.
-2. **The top of the page stays short:** numbers, four steps and the "no milk" warning. Everything else goes in a fold-out section.
+2. **The four steps stay first and short**, with the helplines in step 4 and a shortcut to them in the header. Everything else goes in a fold-out section.
 3. **Keep it one file** that works offline once loaded and opens quickly on a cheap phone over mobile data.
 4. **Never encourage people to keep or raise a squirrel themselves.** The care steps are for the first few hours, before handover to a licensed centre.
 
