@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Found a baby squirrel in Bengaluru? Helpline numbers and what to do right now.">
+<title>Baby Squirrel Rescue Kit</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: one column. Emergency card first, short steps, then folding panels. Palm-squirrel stripe colours as the accent. */
+:root{
+  --bg:#f3f5f1; --surface:#ffffff; --ink:#1d2621; --muted:#5b665f; --line:#d6ddd5;
+  --leaf:#2f6b4f; --leaf-soft:#e2eee6; --fur:#b5651d; --fur-soft:#f8eadb;
+  --alert:#b3261e; --alert-soft:#fbe7e5;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible",ui-sans-serif,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131915; --surface:#1b231e; --ink:#e7ece8; --muted:#9aa79f; --line:#2e3a33;
+  --leaf:#7cc29d; --leaf-soft:#1f3328; --fur:#e39a55; --fur-soft:#3a2a1b;
+  --alert:#ff8a80; --alert-soft:#3d1f1c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131915; --surface:#1b231e; --ink:#e7ece8; --muted:#9aa79f; --line:#2e3a33;
+  --leaf:#7cc29d; --leaf-soft:#1f3328; --fur:#e39a55; --fur-soft:#3a2a1b;
+  --alert:#ff8a80; --alert-soft:#3d1f1c; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);margin:0}
+main{max-width:720px;margin:0 auto;padding-inline:16px;padding-block:36px 64px;display:grid;gap:28px}
+h1,h2,h3{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(2rem,6.5vw,3rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:1.4rem;font-weight:800;letter-spacing:-.01em}
+h3{font-size:1rem;font-weight:600}
+p{margin:0}
+a{color:var(--leaf)}
+.muted{color:var(--muted)}
+.small{font-size:.875rem}
+
+.hero{display:grid;gap:12px}
+.stripes{display:flex;gap:5px;height:8px;width:84px}
+.stripes span{flex:1;border-radius:4px;background:var(--fur)}
+.stripes span:nth-child(2){background:var(--ink)}
+
+/* Emergency card */
+.sos{background:var(--alert-soft);border:2px solid var(--alert);border-radius:16px;padding:18px;display:grid;gap:16px}
+.lines{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+.line{background:var(--surface);border-radius:10px;padding:12px 14px;display:grid;gap:2px;min-width:0}
+.line b{font-family:var(--display);font-weight:600}
+.num{font-size:1.2rem;font-weight:700;font-variant-numeric:tabular-nums;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.num span{user-select:all}
+.copy{font:700 .72rem var(--body);border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:2px 9px;cursor:pointer}
+ol.steps{list-style:none;counter-reset:s;margin:0;padding:0;display:grid;gap:10px}
+ol.steps li{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}
+ol.steps li::before{counter-increment:s;content:counter(s);font-weight:700;font-size:.85rem;background:var(--alert);color:var(--surface);border-radius:50%;width:26px;height:26px;display:grid;place-items:center}
+.nomilk{background:var(--surface);border-radius:10px;padding:12px 14px;font-weight:700}
+.nomilk span{color:var(--alert)}
+
+/* Folding panels */
+.group{display:grid;gap:10px}
+.group > h2{margin-bottom:2px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px}
+details[open]{border-color:var(--leaf)}
+summary{cursor:pointer;list-style:none;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:var(--display);font-weight:600;font-size:1.05rem}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";flex:none;width:9px;height:9px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg) translateY(-3px);transition:transform .2s}
+details[open] summary::after{transform:rotate(225deg) translateY(-1px)}
+@media (prefers-reduced-motion:reduce){summary::after{transition:none}}
+summary:focus-visible,.copy:focus-visible,input:focus-visible{outline:3px solid var(--fur);outline-offset:2px}
+.body{padding:0 16px 16px;display:grid;gap:12px}
+.body ul,.body ol{margin:0;padding-left:1.2em;display:grid;gap:6px}
+.chip{display:inline-block;font-size:.75rem;font-weight:700;padding:1px 8px;border-radius:999px;background:var(--fur-soft);color:var(--fur);margin-right:6px;white-space:nowrap}
+.dont li::marker{content:"✕  ";color:var(--alert)}
+
+.calc{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;background:var(--fur-soft);border-radius:10px;padding:12px 14px}
+.calc label{display:grid;gap:4px;font-size:.8rem;font-weight:700}
+.calc input{font:inherit;width:96px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+.calc output{font:800 1.5rem var(--display);font-variant-numeric:tabular-nums}
+
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.role{border-top:2px solid var(--leaf);padding-top:8px;display:grid;gap:2px;min-width:0}
+
+footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:grid;gap:4px}
+</style>
+</head>
+<body>
+
+<main>
+  <header class="hero">
+    <div class="stripes" aria-hidden="true"><span></span><span></span><span></span></div>
+    <h1>Found a baby squirrel?</h1>
+    <p class="muted">Palm squirrel rescue in Bengaluru. Call first, then keep it warm.</p>
+  </header>
+
+  <section class="sos" aria-label="Emergency">
+    <div class="lines">
+      <div class="line"><b>PfA Wildlife Hospital</b><span class="small muted">24×7, takes squirrels</span>
+        <span class="num"><span>99000 25370</span><button class="copy" data-copy="+919900025370">Copy</button></span>
+        <span class="small muted">or 99803 39880</span></div>
+      <div class="line"><b>ARRC</b><span class="small muted">Horamavu, rescues squirrels</span>
+        <span class="num"><span>94496 42222</span><button class="copy" data-copy="+919449642222">Copy</button></span></div>
+      <div class="line"><b>BBMP wildlife</b><span class="small muted">Toll-free</span>
+        <span class="num"><span>1533</span><button class="copy" data-copy="1533">Copy</button></span></div>
+    </div>
+    <ol class="steps">
+      <li><span><b>Is it really a baby?</b> Fluffy tail and running well means it's fine. Leave it.</span></li>
+      <li><span><b>Unhurt? Give the mother 1–2 hours.</b> Open box at the base of the tree, pets and crows away, watch from a distance.</span></li>
+      <li><span><b>Call a helpline</b> if it's injured, cold, covered in ants, caught by a cat, or the mother hasn't come by dark.</span></li>
+      <li><span><b>Keep it warm, dark and quiet</b> in a box with a cotton cloth and a warm water bottle under one side.</span></li>
+    </ol>
+    <p class="nomilk"><span>No milk, no water.</span> Cow's milk kills baby squirrels, and a cold baby can't digest anything.</p>
+  </section>
+
+  <section class="group">
+    <h2>If you're looking after it</h2>
+
+    <details>
+      <summary>No rescue can come for a few hours</summary>
+      <div class="body">
+        <ol>
+          <li><b>Warm it fully first.</b> It should feel warm against your inner wrist.</li>
+          <li><b>Rehydrate.</b> 1 tsp salt + 3 tsp sugar in 1 litre warm boiled water. One drop at a time from a 1 mL syringe (no needle).</li>
+          <li><b>Hold it upright or belly-down</b>, never on its back. Milk bubbling from the nose means stop.</li>
+          <li><b>After a few feeds, move slowly to puppy milk replacer</b> (Lactol, Esbilac) from a vet or pet shop.</li>
+          <li><b>After each feed</b>, rub its bottom gently with warm damp cotton until it pees.</li>
+        </ol>
+        <div class="calc">
+          <label for="wt">Weight (g)<input id="wt" type="number" min="3" max="200" value="40" inputmode="decimal"></label>
+          <div><output id="ml" for="wt">2.0 mL</output><div class="small muted">max per feed, about 5% of body weight</div></div>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>How old is it?</summary>
+      <div class="body"><ul style="list-style:none;padding:0">
+        <li><span class="chip">Newborn</span>Pink, no fur, eyes shut. Most urgent, get it to a centre today.</li>
+        <li><span class="chip">Furred</span>Thin fur and stripes, eyes shut. Needs constant warmth.</li>
+        <li><span class="chip">Eyes open</span>Crawling, a bit tougher.</li>
+        <li><span class="chip">Weaning</span>Fluffy tail, climbs, nibbles food. Often doesn't need rescue.</li>
+      </ul></div>
+    </details>
+
+    <details>
+      <summary>Things that kill baby squirrels</summary>
+      <div class="body"><ul class="dont">
+        <li>Cow's, buffalo or human milk</li>
+        <li>Feeding while it's cold, or lying on its back</li>
+        <li>A bath</li>
+        <li>An untreated cat bite. It needs a vet within hours even if it looks fine.</li>
+        <li>Being raised alone as a pet</li>
+      </ul></div>
+    </details>
+
+    <details>
+      <summary>Can I keep it?</summary>
+      <div class="body"><p>No. Palm squirrels are protected under the Wild Life (Protection) Act, 1972. Emergency care on the way to a rescue is fine; raising and release should be done by a licensed centre.</p></div>
+    </details>
+  </section>
+
+  <section class="group">
+    <h2>Help more</h2>
+
+    <details>
+      <summary>Volunteer</summary>
+      <div class="body">
+        <div class="roles">
+          <div class="role"><h3>Answer calls</h3><p class="small">Guide finders through the steps, from home.</p></div>
+          <div class="role"><h3>Drive</h3><p class="small">Take babies to PfA or ARRC from your area.</p></div>
+          <div class="role"><h3>Foster</h3><p class="small">Only after training at a licensed centre.</p></div>
+          <div class="role"><h3>Spread the word</h3><p class="small">Posters, school talks, apartment groups.</p></div>
+        </div>
+        <p class="small muted">Start by calling PfA or ARRC and asking about volunteer days.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Donate</summary>
+      <div class="body"><ul>
+        <li><b>Give to PfA or ARRC directly.</b> They have the vets, licences and cages, so money goes furthest there.</li>
+        <li><b>Give supplies:</b> puppy milk replacer, 1 mL syringes, heating pads, cotton cloths. Ask what they're short of.</li>
+      </ul></div>
+    </details>
+
+    <details>
+      <summary>Running a rescue group</summary>
+      <div class="body">
+        <h3>Community</h3>
+        <ul>
+          <li>One WhatsApp group per area. Pin the steps and numbers. Ask for photo, location pin, condition and time found.</li>
+          <li>Nests come down in tree pruning and monsoon storms. Ask your RWA to check trees for nests before cutting.</li>
+          <li>Put a QR code to this page on park gates and apartment notice boards.</li>
+        </ul>
+        <h3>Money</h3>
+        <ul>
+          <li>Small, specific crowdfunding asks (Milaap, Ketto) with a spending update afterwards.</li>
+          <li>CSR money and tax-deductible donations need a registered trust or society with 12A and 80G.</li>
+          <li>Post a monthly summary: rescued, released, money in and out.</li>
+        </ul>
+        <h3>Tools</h3>
+        <ul>
+          <li>WhatsApp Business quick replies for intake.</li>
+          <li>Google Form into a Sheet, one row per baby.</li>
+          <li>Shared Google Calendar for who's on call.</li>
+        </ul>
+        <h3>Helper kit, about ₹2,000–3,500</h3>
+        <p>Box with air holes, heating pad or hot water bottle, cotton cloths, 1 mL syringes, gram scale, gloves, puppy milk replacer.</p>
+      </div>
+    </details>
+  </section>
+
+  <footer>
+    <p>Numbers from the centres' websites and news reports, October 2026. Save them, and call once to check they work.</p>
+    <p>For the first few hours only. Not a replacement for a vet or rescue centre.</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click',function(){
+      var done=function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1500)};
+      var fallback=function(){var r=document.createRange();r.selectNodeContents(b.previousElementSibling);var s=getSelection();s.removeAllRanges();s.addRange(r)};
+      try{navigator.clipboard.writeText(b.dataset.copy).then(done,fallback)}catch(e){fallback()}
+    });
+  });
+  var wt=document.getElementById('wt'),ml=document.getElementById('ml');
+  function calc(){var w=parseFloat(wt.value)||0;ml.textContent=(Math.round(w*0.5)/10).toFixed(1)+' mL'}
+  wt.addEventListener('input',calc);calc();
+})();
+</script>
+</body>
+</html>
